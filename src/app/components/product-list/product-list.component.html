@@ -1,0 +1,71 @@
+<div class="d-flex">
+  <h1 class="display-6">Product List</h1>
+  <div class="ms-3 d-flex align-items-center">
+    <!--# One Way binding (tek yönlü atama) -->
+    <input
+      type="text"
+      class="form-control"
+      id="searchProductNameInput"
+      placeholder="Search..."
+      (keyup)="onSearchProductNameChange($event)"
+      [value]="searchProductNameInput"
+      [(ngModel)]="searchProductNameInput"
+    />
+    <!--: $event ilgili event'in özelliklerinin bulunduğu html tarafından geçilen js objesi angular tarafından geçilecektir. -->
+  </div>
+</div>
+
+<div *ngIf = "isLoading===false"
+class="d-flex justify-content-center spinner-icon">
+  <div class="spinner-border" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+
+
+<div class="row">
+  <!--* unordered list -->
+  <!--# Built-in Directive -->
+
+  <!--# *ngFor is a built-in structural directive -->
+  <!-- <div *ngFor="let product of products"> -->
+
+
+  <ng-template ngFor let-product [ngForOf]="filteredProducts">
+   
+    <div
+      *ngIf="isProductCardShow(product); else productDiscontinued"
+      [class]="productCardClass"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary">Add to Cart</a>
+      </div>
+    </div>
+    <!--* list istem -->
+
+    <ng-template #productDiscontinued>
+      <div
+        class="{{
+          productCardClass
+        }} d-flex justify-content-center align-items-center"
+      >
+        <p>{{ product.name }} ürünü şuan satılmıyor.</p>
+    
+      </div>
+    </ng-template>
+  </ng-template>
+
+  <div *ngIf="filteredProducts.length === 0">
+    <div class="alert alert-danger" role="alert">
+      Ürün Bulunamadı.
+    </div>
+  </div>
+
+
+  <!-- </div> -->
+</div>
