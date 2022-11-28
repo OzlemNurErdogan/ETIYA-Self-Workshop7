@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   selectedProductCategoryId: number | null = null;
   searchProductNameInput: string | null = null;
 
-  get filteredProducts(): any[] {
+  get filteredProducts(): Product[] {
     let filteredProducts = this.products;
 
     if (this.selectedProductCategoryId)
@@ -28,11 +28,11 @@ export class ProductListComponent implements OnInit {
         (p) => p.categoryId === this.selectedProductCategoryId
       );
 
-    if (this.searchProductNameInput)
+      if (this.searchProductNameInput)
       filteredProducts = filteredProducts.filter((p) =>
         p.name
           .toLowerCase()
-          //.includes(this.searchProductNameInput?.toLowerCase())
+          .includes(this.searchProductNameInput!.toLowerCase())
       );
 
     return filteredProducts;
