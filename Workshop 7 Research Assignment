@@ -1,0 +1,63 @@
+Undefined-Null
+
+The value undefined means value is not assigned & you don’t know its value. It is an unintentional absence of value.
+It means that a variable has been declared but has not yet been assigned a value.
+
+The value null indicates that you know that the field does not have a value. It is an intentional absence of value.
+*******************
+
+HTTP Request 
+
+An HTTP request is made by a client, to a named host, which is located on a server. The aim of the request is to access a resource on the server.
+
+GET: GET request is used to read/retrieve data from a web server. GET returns an HTTP status code of 200 (OK) if the data is successfully retrieved from the server.
+
+POST: POST request is used to send data (file, form data, etc.) to the server. On successful creation, it returns an HTTP status code of 201.
+
+PUT: A PUT request is used to modify the data on the server. It replaces the entire content at a particular location with data that is passed in the body payload. If there are no resources that match the request, it will generate one.
+
+PATCH: PATCH is similar to PUT request, but the only difference is, it modifies a part of the data. It will only replace the content that you want to update.
+
+DELETE: A DELETE request is used to delete the data on the server at a specified location.
+
+HTTP status code
+An HTTP status code is a message a website’s server sends to the browser to indicate whether or not that request can be fulfilled.
+1xx: Informational
+2xx: Success!
+3xx: Redirect. The requested page has moved somewhere else.
+4xx: Client error. There’s something wrong with the way the browser asked for the page.
+5xx: Server error. Something went wrong with the way the server tried to send the page.
+*******************
+
+Interface
+
+In TypeScript, an interface is an abstract type that tells the compiler which property names a given object can have. TypeScript creates implicit interfaces when you define an object with properties. 
+It starts by looking at the object’s property name and data type using TypeScript’s type inference abilities.
+*******************
+
+Class-Object
+Class is a detailed description, the definition, and the template of what an object will be. But it is not the object itself.
+Object is an instance of a class. All data members and member functions of the class can be accessed with the help of objects. When a class is defined, no memory is allocated, but memory is allocated when it is instantiated.
+*******************
+Inversion of control bir yazılım tasarım prensibidir. Ioc ile Uygulama içerisindeki obje instance’larının yönetimi sağlanarak, bağımlılıklarını en aza indirgemek amaçlanmaktadır.
+Inversion of Control’ün getirdiği avantajlar;
+
+Bir methodun implementasyonundan izole bir şekilde çalıştırılabilmesini sağlar.
+Farklı implementasyonlar arasında, kolayca geçiş yapabilmenizi sağlar.
+Program modülerliğini artırır.
+Bağımlılıklar en aza indiği için test etmeyi/yazmayı kolaylaştırır.
+
+Dependency Injection
+dependency injection is a technique whereby one object (or static method) supplies the dependencies of another object. A dependency is an object that can be used (a service).
+There are basically three types of dependency injection:
+-constructor injection: the dependencies are provided through a class constructor.
+-setter injection: the client exposes a setter method that the injector uses to inject the dependency.
+-interface injection: the dependency provides an injector method that will inject the dependency into any client passed to it. Clients must implement an interface that exposes a setter method that accepts the dependency.
+
+So now its the dependency injection’s responsibility to:
+-Create the objects
+-Know which classes require those objects
+-And provide them all those objects
+
+
+
