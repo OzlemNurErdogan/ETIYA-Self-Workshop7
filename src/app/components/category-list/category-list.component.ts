@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 
@@ -20,6 +20,8 @@ export class CategoryListComponent implements OnInit {
   private _categoriesListItems: any[] = [{ label: 'All', value: null }];
   //# Getter
   get categoriesListItems(): any[] {
+
+    if (this.categories === undefined) return this._categoriesListItems;
     // property
     return [
       ...this._categoriesListItems,
@@ -47,6 +49,7 @@ export class CategoryListComponent implements OnInit {
   //: Dependency Injection, IoC container'ın içerisindeki referansları kullanmamızı sağlayan bir mekanizmadır.
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private categoriesService: CategoriesService) {
     //: constructor class oluşturulduğu an çalışır.
     // this.activatedRoute = activatedRoute;
@@ -75,6 +78,7 @@ export class CategoryListComponent implements OnInit {
   // onSelectedCategory(categoryId: number | null): void {
   //   // if (category === null) this.selectedCategoryId = null;
   //   // else this.selectedCategoryId = category.id;
+  onSelectedCategory(categoryId: number | null): void {
 
   //   //# Debugging
   //   //debugger; // breakpoint. Uygulama çalışma anında bu satıra geldiğinde uygulama durucak ve adım adım takip edebileceğimiz bir panel açılacak.
@@ -89,6 +93,13 @@ export class CategoryListComponent implements OnInit {
   //   //: ?? operatörü ile sol taraf false (null, undefined, 0, "") ise sağ tarafı atar.
   //   this.selectedCategoryId = categoryId ?? null;
   // }
+  const route = ['/'];
+  if (categoryId !== null) route.push('category', categoryId!.toString());
+
+  this.activatedRoute.queryParams.subscribe((queryParams) => {
+    this.router.navigate(route, { queryParams }); //= queryParams: queryParams
+  });
+}
 
   isSelectedCategory(categoryId: number | null): boolean {
     return categoryId === this.selectedCategoryId;

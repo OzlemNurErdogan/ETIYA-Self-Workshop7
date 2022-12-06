@@ -21,6 +21,20 @@ export class CategoriesService {
     return this.httpClient.get<Category>(`${this.controllerUrl}/${id}`); 
 
   }
+  add(request: Category): Observable<Category> {
+    let newPath = this.controllerUrl + 'categories';
+    return this.httpClient.post<Category>(newPath, request);
+  }
+
+  update(request: Category): Observable<Category> {
+    let newPath = this.controllerUrl + 'categories';
+    return this.httpClient.put<Category>(`${newPath}/${request.id}`, request);
+  }
+
+  delete(categoryId: number): Observable<Category> {
+    let newPath = this.controllerUrl + 'categories';
+    return this.httpClient.delete<Category>(`${newPath}/${categoryId}`);
+  }
 }
   
 
